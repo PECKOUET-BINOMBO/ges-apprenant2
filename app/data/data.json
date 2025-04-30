@@ -307,16 +307,17 @@
                 "date": "2005-03-01",
                 "lieu": "Dakar"
             },
-            "adresse": "Sicap Libert\u00e9 6 Villa 6509 Dakar, S\u00e9n\u00e9gal",
+            "adresse": "Sicap Liberté 6 Villa 6509 Dakar, Sénégal",
             "email": "mouhamed@gmail.com",
             "telephone": "771234567",
             "photo": "diop.jpg",
             "referentiel_id": 1,
-            "promotion_id": 1,
+            "promotion_id": 11,  
+            "statut": "retenu",  
             "tuteur": {
                 "nom": "Assane Diop",
-                "lien": "P\u00e8re",
-                "adresse": "Sicap Libert\u00e9 6 Villa 6509 Dakar, S\u00e9n\u00e9gal",
+                "lien": "Père",
+                "adresse": "Sicap Liberté 6 Villa 6509 Dakar, Sénégal",
                 "telephone": "771234567"
             },
             "presences": [],
@@ -325,7 +326,7 @@
             "historique_presences": [
                 {
                     "date": "2025-04-01 08:00",
-                    "statut": "Pr\u00e9sent",
+                    "statut": "Présent",
                     "justifie": false
                 },
                 {
@@ -341,8 +342,10 @@
             ]
         },
         {
+            "id": 2,
+            "matricule": "286020",
             "nom": "PECKOUET-BINOMBO",
-            "prenom": "Paul \u00c9mile",
+            "prenom": "Paul Émile",
             "naissance": {
                 "date": "1995-06-27",
                 "lieu": "Gabon"
@@ -352,15 +355,72 @@
             "telephone": "772995851",
             "photo": "680698b8aaa2e_IMG-20250407-WA0015.jpg",
             "referentiel_id": 1,
-            "promotion_id": 1,
+            "promotion_id": 11, 
+            "statut": "attente",
             "tuteur": {
                 "nom": "BA",
                 "lien": "Soeur",
                 "adresse": "Ouest Foire",
                 "telephone": "772995851"
             },
-            "id": 2,
-            "matricule": "286020"
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": []
+        },
+        {
+            "id": 3,
+            "matricule": "102302",
+            "nom": "Fall",
+            "prenom": "Aminata",
+            "naissance": {
+                "date": "1998-08-20",
+                "lieu": "Thiès"
+            },
+            "adresse": "Pikine",
+            "email": "afall@example.com",
+            "telephone": "772345678",
+            "photo": "profil.jpg",
+            "referentiel_id": 2,
+            "promotion_id": 11,
+            "statut": "retenu",
+            "tuteur": {
+                "nom": "Moussa Fall",
+                "lien": "Frère",
+                "adresse": "Pikine",
+                "telephone": "774567890"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": []
+        },
+        {
+            "id": 4,
+            "matricule": "102303",
+            "nom": "Ndiaye",
+            "prenom": "Moussa",
+            "naissance": {
+                "date": "2000-05-15",
+                "lieu": "Saint-Louis"
+            },
+            "adresse": "Guediawaye",
+            "email": "mndiaye@example.com",
+            "telephone": "773456789",
+            "photo": "profil.jpg",
+            "referentiel_id": 3,
+            "promotion_id": 11,
+            "statut": "attente",
+            "tuteur": {
+                "nom": "Fatou Ndiaye",
+                "lien": "Mère",
+                "adresse": "Guediawaye",
+                "telephone": "775678901"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": []
         }
     ]
 }

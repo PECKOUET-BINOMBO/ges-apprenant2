@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers;
 
 use function App\Controllers\render_view;
@@ -8,22 +7,40 @@ use function App\Controllers\save_photo;
 
 require_once __DIR__ . '/../controllers/controller.php';
 require_once __DIR__ . '/../models/model.php';
+require_once __DIR__ . '/../services/validator.service.php';
 
 $model = include __DIR__ . '/../models/model.php';
+$validator = include __DIR__ . '/../services/validator.service.php';
+
+// Gestion de l'affichage du formulaire
+$afficher_formulaire = false;
+if (isset($_GET['action'])) {
+    if ($_GET['action'] === 'ajouter') {
+        $afficher_formulaire = true;
+    } elseif ($_GET['action'] === 'annuler') {
+        $afficher_formulaire = false;
+    }
+}
+
+// Gestion de la liste à afficher (retenus ou attente)
+$liste_a_afficher = $_GET['liste'] ?? 'retenus';
+if (!in_array($liste_a_afficher, ['retenus', 'attente'])) {
+    $liste_a_afficher = 'retenus';
+}
 
 function index_apprenants(): void
 {
     global $model;
+    global $afficher_formulaire;
+    global $liste_a_afficher;
 
     $promotion_id = $model['get_promotion_active']();
     $apprenants = array_filter($model['get_apprenants'](), fn($a) => $a['promotion_id'] === $promotion_id);
     $referentiels = $model['get_referentiels']();
-
-    // Récupérer les erreurs et les anciennes valeurs de la session
+    
     $errors = $_SESSION['errors'] ?? [];
     $old = $_SESSION['old'] ?? [];
 
-    // Nettoyer les sessions après les avoir récupérées
     unset($_SESSION['errors']);
     unset($_SESSION['old']);
 
@@ -32,117 +49,107 @@ function index_apprenants(): void
         'apprenants' => $apprenants,
         'referentiels' => $referentiels,
         'errors' => $errors,
-        'old' => $old
+        'old' => $old,
+        'afficher_formulaire' => $afficher_formulaire,
+        'liste_a_afficher' => $liste_a_afficher
     ]);
 }
 
-function store_apprenant(): void {
+function generer_matricule($apprenants): string
+{
+    $annee_courante = date('y');
+    $max_id = 0;
+    
+    foreach ($apprenants as $apprenant) {
+        $id = (int)substr($apprenant['matricule'], 2);
+        if ($id > $max_id) {
+            $max_id = $id;
+        }
+    }
+
+    $nouvel_id = $max_id + 1;
+    return $annee_courante . str_pad($nouvel_id, 4, '0', STR_PAD_LEFT);
+}
+
+function store_apprenant(): void
+{
     global $model, $validator;
 
-    $data = $model['json_to_array'](__DIR__ . '/../data/data.json');
-    $apprenants = $data['apprenants'] ?? [];
-    
-    // Convertir la date au format JJ/MM/AAAA pour la validation
-    $date_naissance = $_POST['date_naissance'] ?? '';
-    $date_formatted = '';
-    
-    if (!empty($date_naissance)) {
-        $date_obj = new \DateTime($date_naissance);
-        $date_formatted = $date_obj->format('d/m/Y');
-    }
-    
-    // Restructurer les entrées pour correspondre à la structure attendue par le validateur
     $inputs = [
         'nom' => $_POST['nom'] ?? '',
         'prenom' => $_POST['prenom'] ?? '',
-        'naissance' => [
-            'date' => $date_formatted,
-            'lieu' => $_POST['lieu_naissance'] ?? ''
-        ],
+        'date_naissance' => $_POST['date_naissance'] ?? '',
+        'lieu_naissance' => $_POST['lieu_naissance'] ?? '',
         'adresse' => $_POST['adresse'] ?? '',
-        'telephone' => $_POST['telephone'] ?? '',
         'email' => $_POST['email'] ?? '',
-        'photo' => isset($_FILES['photo']) ? $_FILES['photo'] : null,
-        'referentiel_id' => (int)($_POST['referentiel_id'] ?? 0),
-        'promotion_id' => $model['get_promotion_active'](),
-        'tuteur' => [
-            'nom' => $_POST['nom_tuteur'] ?? '',
-            'lien' => $_POST['lien_parente'] ?? '',
-            'adresse' => $_POST['adresse_tuteur'] ?? '',
-            'telephone' => $_POST['telephone_tuteur'] ?? ''
-        ]
+        'telephone' => $_POST['telephone'] ?? '',
+        'photo' => $_FILES['photo'] ?? [],
+        'referentiel_id' => $_POST['referentiel_id'] ?? '',
+        'nom_tuteur' => $_POST['nom_tuteur'] ?? '',
+        'lien_parente' => $_POST['lien_parente'] ?? '',
+        'adresse_tuteur' => $_POST['adresse_tuteur'] ?? '',
+        'telephone_tuteur' => $_POST['telephone_tuteur'] ?? ''
     ];
 
-    // Valider les données
+    $_SESSION['old'] = $inputs;
+
+    $data = $model['json_to_array'](__DIR__ . '/../data/data.json');
+    $apprenants = $data['apprenants'] ?? [];
+
     $errors = $validator['validate_apprenant']($inputs, $apprenants);
-    
-    // Mapper les erreurs aux champs du formulaire
-    $mappedErrors = [];
-    if (isset($errors['nom'])) $mappedErrors['nom'] = $errors['nom'];
-    if (isset($errors['prenom'])) $mappedErrors['prenom'] = $errors['prenom'];
-    if (isset($errors['date_naissance'])) $mappedErrors['date_naissance'] = $errors['date_naissance'];
-    if (isset($errors['lieu_naissance'])) $mappedErrors['lieu_naissance'] = $errors['lieu_naissance'];
-    if (isset($errors['adresse'])) $mappedErrors['adresse'] = $errors['adresse'];
-    if (isset($errors['email'])) $mappedErrors['email'] = $errors['email'];
-    if (isset($errors['telephone'])) $mappedErrors['telephone'] = $errors['telephone'];
-    if (isset($errors['photo'])) $mappedErrors['photo'] = $errors['photo'];
-    if (isset($errors['referentiel_id'])) $mappedErrors['referentiel_id'] = $errors['referentiel_id'];
-    if (isset($errors['nom_tuteur'])) $mappedErrors['nom_tuteur'] = $errors['nom_tuteur'];
-    if (isset($errors['lien_parente'])) $mappedErrors['lien_parente'] = $errors['lien_parente'];
-    if (isset($errors['adresse_tuteur'])) $mappedErrors['adresse_tuteur'] = $errors['adresse_tuteur'];
-    if (isset($errors['telephone_tuteur'])) $mappedErrors['telephone_tuteur'] = $errors['telephone_tuteur'];
 
-    // S'il y a des erreurs, les stocker en session et rediriger
     if (!empty($errors)) {
-        $_SESSION['errors'] = $mappedErrors;
-        $_SESSION['old'] = $_POST; // Conserver les valeurs originales
-        redirect_to_route('?route=apprenants&add_apprenant=true');
+        $_SESSION['errors'] = $errors;
+        redirect_to_route('?route=apprenants&action=ajouter');
         return;
     }
 
-    // Vérifier si un fichier a bien été uploadé
-    if (!isset($_FILES['photo']) || $_FILES['photo']['error'] !== UPLOAD_ERR_OK) {
-        $mappedErrors['photo'] = "apprenant.photo.required";
-        $_SESSION['errors'] = $mappedErrors;
-        $_SESSION['old'] = $_POST;
-        redirect_to_route('?route=apprenants&add_apprenant=true');
-        return;
-    }
-
-    // Traiter l'upload de photo
-    $photoName = save_photo($_FILES['photo']);
+    $photoName = save_photo($inputs['photo']);
     if (!$photoName) {
-        $mappedErrors['photo'] = "Impossible d'uploader l'image.";
-        $_SESSION['errors'] = $mappedErrors;
-        $_SESSION['old'] = $_POST;
-        redirect_to_route('?route=apprenants&add_apprenant=true');
+        $_SESSION['errors']['photo'] = "Erreur lors de l'upload de la photo.";
+        redirect_to_route('?route=apprenants&action=ajouter');
         return;
     }
 
-    // Créer le nouvel apprenant avec la structure correcte
-    $newId = count($apprenants) + 1;
-    $apprenant = [
+    $matricule = generer_matricule($apprenants);
+    $promotion_id = $model['get_promotion_active']();
+    $newId = !empty($apprenants) ? max(array_column($apprenants, 'id')) + 1 : 1;
+
+    $nouvel_apprenant = [
         'id' => $newId,
-        'matricule' => generate_matricule($inputs['nom'], $inputs['prenom']),
+        'matricule' => $matricule,
         'nom' => $inputs['nom'],
         'prenom' => $inputs['prenom'],
-        'naissance' => $inputs['naissance'],
+        'naissance' => [
+            'date' => $inputs['date_naissance'],
+            'lieu' => $inputs['lieu_naissance']
+        ],
         'adresse' => $inputs['adresse'],
-        'telephone' => $inputs['telephone'],
         'email' => $inputs['email'],
+        'telephone' => $inputs['telephone'],
         'photo' => $photoName,
-        'referentiel_id' => $inputs['referentiel_id'],
-        'promotion_id' => $inputs['promotion_id'],
-        'tuteur' => $inputs['tuteur']
+        'referentiel_id' => (int)$inputs['referentiel_id'],
+        'promotion_id' => $promotion_id,
+        'statut' => 'retenu', // Par défaut, l'apprenant est retenu
+        'tuteur' => [
+            'nom' => $inputs['nom_tuteur'],
+            'lien' => $inputs['lien_parente'],
+            'adresse' => $inputs['adresse_tuteur'],
+            'telephone' => $inputs['telephone_tuteur']
+        ],
+        'presences' => [],
+        'retards' => [],
+        'absences' => [],
+        'historique_presences' => []
     ];
 
-    // Ajouter l'apprenant à la liste et sauvegarder
-    $data['apprenants'][] = $apprenant;
-    $model['array_to_json'](__DIR__ . '/../data/data.json', $data);
-    redirect_to_route('?route=apprenants&success=true&message=apprenant.ajout.success');
-    
-}
+    $apprenants[] = $nouvel_apprenant;
+    $data['apprenants'] = $apprenants;
 
+    $model['array_to_json'](__DIR__ . '/../data/data.json', $data);
+
+    redirect_to_route('?route=apprenants&success=true&message=Apprenant ajouté avec succès');
+}
 
 function show_apprenant_details(): void
 {
@@ -183,4 +190,48 @@ function show_apprenant_details(): void
         'apprenant' => $apprenant,
         'referentiel' => $referentiel_nom
     ]);
+}
+
+function activer_apprenant(): void
+{
+    global $model;
+
+    $id = $_GET['id'] ?? null;
+    if (!$id) {
+        redirect_to_route('?route=apprenants');
+        return;
+    }
+
+    $data = $model['json_to_array'](__DIR__ . '/../data/data.json');
+    foreach ($data['apprenants'] as &$apprenant) {
+        if ($apprenant['id'] == $id) {
+            $apprenant['statut'] = 'retenu';
+            break;
+        }
+    }
+
+    $model['array_to_json'](__DIR__ . '/../data/data.json', $data);
+    redirect_to_route('?route=apprenants&liste=attente&success=true&message=Apprenant activé avec succès');
+}
+
+function desactiver_apprenant(): void
+{
+    global $model;
+
+    $id = $_GET['id'] ?? null;
+    if (!$id) {
+        redirect_to_route('?route=apprenants');
+        return;
+    }
+
+    $data = $model['json_to_array'](__DIR__ . '/../data/data.json');
+    foreach ($data['apprenants'] as &$apprenant) {
+        if ($apprenant['id'] == $id) {
+            $apprenant['statut'] = 'attente';
+            break;
+        }
+    }
+
+    $model['array_to_json'](__DIR__ . '/../data/data.json', $data);
+    redirect_to_route('?route=apprenants&liste=retenus&success=true&message=Apprenant désactivé avec succès');
 }
