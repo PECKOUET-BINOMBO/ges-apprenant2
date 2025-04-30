@@ -1,0 +1,366 @@
+{
+    "utilisateurs": [
+        {
+            "id": 1,
+            "nom": "Sow",
+            "prenom": "Fatou",
+            "email": "admin@odc.sn",
+            "mot_de_passe": "Admin1234",
+            "role": "Admin",
+            "statut": "actif",
+            "matricule": "ADM001"
+        },
+        {
+            "id": 2,
+            "nom": "Fall",
+            "prenom": "Ibrahima",
+            "email": "vigile@odc.sn",
+            "mot_de_passe": "vigile123",
+            "role": "Vigile",
+            "statut": "actif",
+            "matricule": "ADM002"
+        },
+        {
+            "id": 3,
+            "nom": "Diop",
+            "prenom": "Awa",
+            "email": "apprenant@odc.sn",
+            "mot_de_passe": "apprenant123",
+            "role": "Apprenant",
+            "statut": "actif",
+            "matricule": "ADM003"
+        }
+    ],
+    "promotion_active": 11,
+    "promotions": [
+        {
+            "id": 1,
+            "nom": "PROMOTION 2024",
+            "date_debut": "2024-01-15",
+            "date_fin": "2024-12-15",
+            "image": "odc2024.jpg",
+            "statut": "inactif",
+            "referentiels": [
+                1,
+                3,
+                2,
+                4,
+                5
+            ]
+        },
+        {
+            "id": 2,
+            "nom": "PROMOTION 2023",
+            "date_debut": "2023-01-10",
+            "date_fin": "2023-12-10",
+            "image": "odc2023.jpg",
+            "statut": "inactif",
+            "referentiels": [
+                2
+            ]
+        },
+        {
+            "id": 3,
+            "nom": "PROMOTION 2025",
+            "date_debut": "2025-01-10",
+            "date_fin": "2025-12-10",
+            "image": "odc2025.jpg",
+            "statut": "inactif",
+            "referentiels": [
+                1,
+                4,
+                3,
+                2
+            ]
+        },
+        {
+            "id": 4,
+            "nom": "Promotion 2022",
+            "date_debut": "2022-01-23",
+            "date_fin": "2023-01-23",
+            "statut": "inactif",
+            "image": "",
+            "referentiels": [
+                1
+            ]
+        },
+        {
+            "id": 5,
+            "nom": "Promotion 2022",
+            "date_debut": "2022-01-23",
+            "date_fin": "2023-01-23",
+            "statut": "inactif",
+            "image": "",
+            "referentiels": [
+                3,
+                1
+            ]
+        },
+        {
+            "id": 6,
+            "nom": "PROMOTION 2021",
+            "date_debut": "2025-04-22",
+            "date_fin": "2025-04-23",
+            "image": "68080fdfda0e6_IMG-20250407-WA0015.jpg",
+            "referentiels": [
+                1,
+                2,
+                4,
+                3
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 7,
+            "nom": "PROMOTION 2026",
+            "date_debut": "2026-01-22",
+            "date_fin": "2027-01-22",
+            "image": "68081ab0cdf4d_IMG-20250407-WA0015.jpg",
+            "referentiels": [
+                1,
+                5,
+                2,
+                4
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 8,
+            "nom": "PROMOTION 2017",
+            "date_debut": "01\/01\/2017",
+            "date_fin": "01\/01\/2018",
+            "image": "6809037e9b2a2_IMG-20250407-WA0015.jpg",
+            "referentiels": [
+                1
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 9,
+            "nom": "PROMOTION 2029",
+            "date_debut": "01\/01\/2029",
+            "date_fin": "01\/01\/2030",
+            "image": "promo_68090a888a1cd.jpg",
+            "referentiels": [
+                1
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 10,
+            "nom": "PROMOTION 2028",
+            "date_debut": "01\/01\/2029",
+            "date_fin": "01\/01\/2030",
+            "image": "promo_68093be2c4d85.png",
+            "referentiels": [
+                1
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 11,
+            "nom": "PROMOTION 2030",
+            "date_debut": "01\/01\/2030",
+            "date_fin": "01\/01\/2031",
+            "image": "promo_680a28e41207b.jpeg",
+            "referentiels": [
+                2,
+                3,
+                4,
+                1
+            ],
+            "statut": "actif"
+        },
+        {
+            "id": 12,
+            "nom": "test",
+            "date_debut": "01\/01\/2029",
+            "date_fin": "01\/01\/2030",
+            "image": "promo_680a3145da958.jpg",
+            "referentiels": [
+                1,
+                3
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 13,
+            "nom": "PROMOTION 202",
+            "date_debut": "01\/01\/2029",
+            "date_fin": "01\/01\/2030",
+            "image": "promo_680a346603eba.jpg",
+            "referentiels": [
+                1,
+                2
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 14,
+            "nom": "PROMOTION 201",
+            "date_debut": "01\/01\/2029",
+            "date_fin": "01\/01\/2030",
+            "image": "promo_680b803596bc7.jpg",
+            "referentiels": [
+                2,
+                3
+            ],
+            "statut": "inactif"
+        }
+    ],
+    "referentiels": [
+        {
+            "id": 1,
+            "nom": "D\u00e9veloppement Web\/Mobile",
+            "description": "Analyse du besoin \u00e0 la mise en ligne...",
+            "capacite": 30,
+            "image": "web.jpg",
+            "sessions": 1,
+            "apprenants": [],
+            "promotions": [
+                1,
+                7,
+                6,
+                3,
+                11
+            ]
+        },
+        {
+            "id": 2,
+            "nom": "R\u00e9f\u00e9rent digital",
+            "description": "Culture num\u00e9rique, communication digitale...",
+            "capacite": 25,
+            "image": "referent.jpg",
+            "sessions": 1,
+            "apprenants": [],
+            "promotions": [
+                2,
+                1,
+                7,
+                6,
+                3
+            ]
+        },
+        {
+            "id": 3,
+            "nom": "D\u00e9veloppement data",
+            "description": "De la collecte \u00e0 l'analyse de donn\u00e9es...",
+            "capacite": 25,
+            "image": "data.jpg",
+            "sessions": 1,
+            "apprenants": [],
+            "promotions": [
+                1,
+                6,
+                3,
+                11
+            ]
+        },
+        {
+            "id": 4,
+            "nom": "Assistant Digital",
+            "description": "Initiation aux outils num\u00e9riques pour assistant.e.s...",
+            "capacite": 20,
+            "image": "assistant.jpg",
+            "sessions": 1,
+            "apprenants": [],
+            "promotions": [
+                1,
+                7,
+                6,
+                3,
+                11
+            ]
+        },
+        {
+            "id": 5,
+            "nom": "AWS & DevOps",
+            "description": "Infrastructure cloud, CI\/CD, monitoring...",
+            "capacite": 25,
+            "image": "aws.jpg",
+            "sessions": 1,
+            "apprenants": [],
+            "promotions": [
+                1,
+                7
+            ]
+        },
+        {
+            "id": 6,
+            "nom": "ref test",
+            "description": "test de la r\u00e9f\u00e9rence en cours ",
+            "capacite": 50,
+            "image": "promo_680e6a1b26aad.png",
+            "sessions": 2,
+            "modules": [],
+            "apprenants": [],
+            "promotions": []
+        }
+    ],
+    "apprenants": [
+        {
+            "id": 1,
+            "matricule": "102301",
+            "nom": "Diop",
+            "prenom": "Seydina Mouhammad",
+            "naissance": {
+                "date": "2005-03-01",
+                "lieu": "Dakar"
+            },
+            "adresse": "Sicap Libert\u00e9 6 Villa 6509 Dakar, S\u00e9n\u00e9gal",
+            "email": "mouhamed@gmail.com",
+            "telephone": "771234567",
+            "photo": "diop.jpg",
+            "referentiel_id": 1,
+            "promotion_id": 1,
+            "tuteur": {
+                "nom": "Assane Diop",
+                "lien": "P\u00e8re",
+                "adresse": "Sicap Libert\u00e9 6 Villa 6509 Dakar, S\u00e9n\u00e9gal",
+                "telephone": "771234567"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [
+                {
+                    "date": "2025-04-01 08:00",
+                    "statut": "Pr\u00e9sent",
+                    "justifie": false
+                },
+                {
+                    "date": "2025-04-02 08:05",
+                    "statut": "Retard",
+                    "justifie": false
+                },
+                {
+                    "date": "2025-04-03 08:00",
+                    "statut": "Absent",
+                    "justifie": true
+                }
+            ]
+        },
+        {
+            "nom": "PECKOUET-BINOMBO",
+            "prenom": "Paul \u00c9mile",
+            "naissance": {
+                "date": "1995-06-27",
+                "lieu": "Gabon"
+            },
+            "adresse": "Ouest Foire",
+            "email": "apeckouet@gmail.com",
+            "telephone": "772995851",
+            "photo": "680698b8aaa2e_IMG-20250407-WA0015.jpg",
+            "referentiel_id": 1,
+            "promotion_id": 1,
+            "tuteur": {
+                "nom": "BA",
+                "lien": "Soeur",
+                "adresse": "Ouest Foire",
+                "telephone": "772995851"
+            },
+            "id": 2,
+            "matricule": "286020"
+        }
+    ]
+}
