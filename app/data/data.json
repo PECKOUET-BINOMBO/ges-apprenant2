@@ -31,7 +31,7 @@
             "matricule": "ADM003"
         }
     ],
-    "promotion_active": 11,
+    "promotion_active": 9,
     "promotions": [
         {
             "id": 1,
@@ -144,7 +144,7 @@
             "referentiels": [
                 1
             ],
-            "statut": "inactif"
+            "statut": "actif"
         },
         {
             "id": 10,
@@ -169,7 +169,7 @@
                 4,
                 1
             ],
-            "statut": "actif"
+            "statut": "inactif"
         },
         {
             "id": 12,

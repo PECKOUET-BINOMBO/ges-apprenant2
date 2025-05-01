@@ -96,6 +96,7 @@ function load_router(): void
         case 'apprenant_details':
             show_apprenant_details();
             break;
+            
         case 'forgot':
             show_forgot();
             break;

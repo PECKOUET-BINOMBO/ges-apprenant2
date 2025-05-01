@@ -187,54 +187,57 @@ return [
 
     'validate_apprenant' => function (array $data, array $apprenants): array {
         $errors = [];
+        $validate = require __DIR__ . '/../views/translate/fr/error.fr.php';
+        // var_dump($validate['apprenant.nom.required']);
+        // die();
 
         // Validation du nom
         if (empty(trim($data['nom'] ?? ''))) {
-            $errors['nom'] = 'apprenant.nom.required';
+            $errors['nom'] = $validate['apprenant.nom.required'];
         } elseif (strlen($data['nom']) > 50) {
-            $errors['nom'] = 'apprenant.nom.max';
+            $errors['nom'] = $validate['apprenant.nom.max'];
         }
 
         // Validation du prénom
         if (empty(trim($data['prenom'] ?? ''))) {
-            $errors['prenom'] = 'apprenant.prenom.required';
+            $errors['prenom'] = $validate['apprenant.prenom.required'];
         } elseif (strlen($data['prenom']) > 50) {
-            $errors['prenom'] = 'apprenant.prenom.max';
+            $errors['prenom'] = $validate['apprenant.prenom.max'];
         }
 
         // Validation de la date de naissance
         if (empty(trim($data['naissance']['date'] ?? ''))) {
-            $errors['date_naissance'] = 'apprenant.date_naissance.required';
+            $errors['date_naissance'] = $validate['apprenant.date_naissance.required'];
         } elseif (!preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $data['naissance']['date'])) {
-            $errors['date_naissance'] = 'apprenant.date_naissance.format';
+            $errors['date_naissance'] = $validate['apprenant.date_naissance.format'];
         } elseif (!strtotime($data['naissance']['date'])) {
-            $errors['date_naissance'] = 'apprenant.date_naissance.invalide';
+            $errors['date_naissance'] = $validate['apprenant.date_naissance.invalide'];
         }
 
         // Validation du lieu de naissance
         if (empty(trim($data['naissance']['lieu'] ?? ''))) {
-            $errors['lieu_naissance'] = 'apprenant.lieu_naissance.required';
+            $errors['lieu_naissance'] = $validate['apprenant.lieu_naissance.required'];
         } elseif (strlen($data['naissance']['lieu']) > 100) {
-            $errors['lieu_naissance'] = 'apprenant.lieu_naissance.max';
+            $errors['lieu_naissance'] = $validate['apprenant.lieu_naissance.max'];
         }
 
         // Validation de l'adresse
         if (empty(trim($data['adresse'] ?? ''))) {
-            $errors['adresse'] = 'apprenant.adresse.required';
+            $errors['adresse'] = $validate['apprenant.adresse.required'];
         } elseif (strlen($data['adresse']) > 200) {
-            $errors['adresse'] = 'apprenant.adresse.max';
+            $errors['adresse'] = $validate['apprenant.adresse.max'];
         }
 
         // Validation de l'email
         if (empty(trim($data['email'] ?? ''))) {
-            $errors['email'] = 'apprenant.email.required';
+            $errors['email'] = $validate['apprenant.email.required'];
         } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'apprenant.email.invalid';
+            $errors['email'] = $validate['apprenant.email.invalid'];
         } else {
             // Vérifier si l'email existe déjà
             foreach ($apprenants as $apprenant) {
                 if (strtolower($apprenant['email']) === strtolower($data['email'])) {
-                    $errors['email'] = 'apprenant.email.exists';
+                    $errors['email'] = $validate['apprenant.email.exists'];
                     break;
                 }
             }
@@ -242,57 +245,57 @@ return [
 
         // Validation du téléphone
         if (empty(trim($data['telephone'] ?? ''))) {
-            $errors['telephone'] = 'apprenant.telephone.required';
+            $errors['telephone'] = $validate['apprenant.telephone.required'];
         } elseif (!preg_match('/^(77|78|76|70)[0-9]{7}$/', $data['telephone'])) {
-            $errors['telephone'] = 'apprenant.telephone.format';
+            $errors['telephone'] = $validate['apprenant.telephone.format'];
         }
 
         // Validation de la photo
         if (empty($data['photo']['name'] ?? '') && empty($data['photo'] ?? '')) {
-            $errors['photo'] = 'apprenant.photo.required';
+            $errors['photo'] = $validate['apprenant.photo.required'];
         } elseif (!empty($data['photo']['name'])) {
             $ext = strtolower(pathinfo($data['photo']['name'], PATHINFO_EXTENSION));
             $allowed = ['jpg', 'jpeg', 'png'];
             if (!in_array($ext, $allowed)) {
-                $errors['photo'] = 'apprenant.photo.format';
+                $errors['photo'] = $validate['apprenant.photo.format'];
             }
             if ($data['photo']['size'] > 2 * 1024 * 1024) {
-                $errors['photo'] = 'apprenant.photo.size';
+                $errors['photo'] = $validate['apprenant.photo.size'];
             }
         }
 
         // Validation du référentiel
         if (empty(trim($data['referentiel_id'] ?? ''))) {
-            $errors['referentiel_id'] = 'apprenant.referentiel.required';
+            $errors['referentiel_id'] = $validate['apprenant.referentiel.required'];
         }
 
         // Validation des informations du tuteur
         // Nom du tuteur
         if (empty(trim($data['tuteur']['nom'] ?? ''))) {
-            $errors['nom_tuteur'] = 'apprenant.tuteur.nom.required';
+            $errors['nom_tuteur'] = $validate['apprenant.tuteur.nom.required'];
         } elseif (strlen($data['tuteur']['nom']) > 100) {
             $errors['nom_tuteur'] = 'apprenant.tuteur.nom.max';
         }
 
         // Lien de parenté
         if (empty(trim($data['tuteur']['lien'] ?? ''))) {
-            $errors['lien_parente'] = 'apprenant.tuteur.lien.required';
+            $errors['lien_parente'] = $validate['apprenant.tuteur.lien.required'];
         } elseif (strlen($data['tuteur']['lien']) > 50) {
-            $errors['lien_parente'] = 'apprenant.tuteur.lien.max';
+            $errors['lien_parente'] = $validate['apprenant.tuteur.lien.max'];
         }
 
         // Adresse du tuteur
         if (empty(trim($data['tuteur']['adresse'] ?? ''))) {
-            $errors['adresse_tuteur'] = 'apprenant.tuteur.adresse.required';
+            $errors['adresse_tuteur'] = $validate['apprenant.tuteur.adresse.required'];
         } elseif (strlen($data['tuteur']['adresse']) > 200) {
-            $errors['adresse_tuteur'] = 'apprenant.tuteur.adresse.max';
+            $errors['adresse_tuteur'] = $validate['apprenant.tuteur.adresse.max'];
         }
 
         // Téléphone du tuteur
         if (empty(trim($data['tuteur']['telephone'] ?? ''))) {
-            $errors['telephone_tuteur'] = 'apprenant.tuteur.telephone.required';
+            $errors['telephone_tuteur'] = $validate['apprenant.tuteur.telephone.required'];
         } elseif (!preg_match('/^(77|78|76|70)[0-9]{7}$/', $data['tuteur']['telephone'])) {
-            $errors['telephone_tuteur'] = 'apprenant.tuteur.telephone.format';
+            $errors['telephone_tuteur'] = $validate['apprenant.tuteur.telephone.format'];
         }
 
         return $errors;
