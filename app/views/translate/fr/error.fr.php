@@ -1,5 +1,4 @@
 <?php
-
 return [
     // Validation générales
     'required' => 'Ce champ est obligatoire.',
@@ -13,7 +12,6 @@ return [
     'password' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre.',
     'date.format' => 'Format de date invalide. Utilisez le format JJ/MM/AAAA.',
     'date.chronologie' => 'La date de début doit être antérieure à la date de fin.',
-    
     // Authentification
     'login.invalide' => 'Email, matricule ou mot de passe incorrect.',
     'login.required' => 'Veuillez saisir votre email ou matricule.',
@@ -29,12 +27,10 @@ return [
     'reset.password.majuscule' => 'Le mot de passe doit contenir au moins une lettre majuscule.',
     'reset.password.chiffre' => 'Le mot de passe doit contenir au moins un chiffre.',
     'reset.failed' => 'Une erreur est survenue lors de la réinitialisation du mot de passe.',
-
     // Photo
     'photo.required' => 'La photo est requise.',
     'photo.format' => 'La photo doit être au format JPG ou PNG.',
     'photo.size' => 'La photo ne doit pas dépasser 2 Mo.',
-    
     // Promotion
     'promotion.nom.required' => 'Le nom de la promotion est requis.',
     'promotion.nom.existe' => 'Une promotion avec ce nom existe déjà.',
@@ -44,7 +40,6 @@ return [
     'promotion.date_fin.format' => 'Le format de la date de fin est invalide. Utilisez le format JJ/MM/AAAA.',
     'promotion.date_fin.chronologie' => 'La date de fin doit être postérieure à la date de début.',
     'promotion.referentiels.required' => 'Au moins un référentiel doit être sélectionné.',
-    
     // Référentiel
     'referentiel.nom.required' => 'Le nom du référentiel est requis.',
     'referentiel.nom.existe' => 'Un référentiel avec ce nom existe déjà.',
