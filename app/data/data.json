@@ -153,7 +153,8 @@
             "date_fin": "01\/01\/2030",
             "image": "promo_68093be2c4d85.png",
             "referentiels": [
-                1
+                1,
+                3
             ],
             "statut": "inactif"
         },
@@ -177,10 +178,7 @@
             "date_debut": "01\/01\/2029",
             "date_fin": "01\/01\/2030",
             "image": "promo_680a3145da958.jpg",
-            "referentiels": [
-                1,
-                3
-            ],
+            "referentiels": [],
             "statut": "inactif"
         },
         {
@@ -204,6 +202,19 @@
             "referentiels": [
                 2,
                 3
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 15,
+            "nom": "Promotion test tes",
+            "date_debut": "05\/05\/2025",
+            "date_fin": "05\/05\/2026",
+            "image": "promo_6818ec1d30847.jpg",
+            "referentiels": [
+                "3",
+                4,
+                7
             ],
             "statut": "inactif"
         }
@@ -253,7 +264,8 @@
                 1,
                 6,
                 3,
-                11
+                11,
+                10
             ]
         },
         {
@@ -269,7 +281,8 @@
                 7,
                 6,
                 3,
-                11
+                11,
+                15
             ]
         },
         {
@@ -295,6 +308,19 @@
             "modules": [],
             "apprenants": [],
             "promotions": []
+        },
+        {
+            "id": 7,
+            "nom": "Nouveau r\u00e9f\u00e9rentiels",
+            "description": "Description du nouveau r\u00e9f\u00e9rentiel",
+            "capacite": 100,
+            "image": "promo_6818ed2fbdf2c.jpg",
+            "sessions": 2,
+            "modules": [],
+            "apprenants": [],
+            "promotions": [
+                15
+            ]
         }
     ],
     "apprenants": [
@@ -312,7 +338,7 @@
             "telephone": "771234567",
             "photo": "diop.jpg",
             "referentiel_id": 1,
-            "promotion_id": 1,
+            "promotion_id": 9,
             "tuteur": {
                 "nom": "Assane Diop",
                 "lien": "P\u00e8re",
@@ -337,10 +363,18 @@
                     "date": "2025-04-03 08:00",
                     "statut": "Absent",
                     "justifie": true
+                },
+                {
+                    "date": "2025-04-09 08:00",
+                    "statut": "Pr\u00e9sent",
+                    "justifie": true
                 }
-            ]
+            ],
+            "statut": "actif"
         },
         {
+            "id": 2,
+            "matricule": "286020",
             "nom": "PECKOUET-BINOMBO",
             "prenom": "Paul \u00c9mile",
             "naissance": {
@@ -352,15 +386,122 @@
             "telephone": "772995851",
             "photo": "680698b8aaa2e_IMG-20250407-WA0015.jpg",
             "referentiel_id": 1,
-            "promotion_id": 1,
+            "promotion_id": 9,
             "tuteur": {
                 "nom": "BA",
                 "lien": "Soeur",
                 "adresse": "Ouest Foire",
                 "telephone": "772995851"
             },
-            "id": 2,
-            "matricule": "286020"
+            "statut": "actif"
+        },
+        {
+            "id": 3,
+            "matricule": "256301",
+            "nom": "Ndiaye",
+            "prenom": "Aminata",
+            "naissance": {
+                "date": "2000-07-15",
+                "lieu": "Thi\u00e8s"
+            },
+            "adresse": "Parcelles Assainies, Unit\u00e9 15, Dakar",
+            "email": "aminata.ndiaye@example.com",
+            "telephone": "776543210",
+            "photo": "aminata.jpg",
+            "referentiel_id": 3,
+            "promotion_id": 9,
+            "tuteur": {
+                "nom": "Ndiaye Moustapha",
+                "lien": "Oncle",
+                "adresse": "Parcelles Assainies, Unit\u00e9 15, Dakar",
+                "telephone": "776543210"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [],
+            "statut": "inactif"
+        },
+        {
+            "id": 4,
+            "matricule": "256302",
+            "nom": "Sarr",
+            "prenom": "Moussa",
+            "naissance": {
+                "date": "1998-11-23",
+                "lieu": "Saint-Louis"
+            },
+            "adresse": "M\u00e9dina, Rue 12 x 13, Dakar",
+            "email": "moussa.sarr@example.com",
+            "telephone": "778901234",
+            "photo": "moussa.jpg",
+            "referentiel_id": 2,
+            "promotion_id": 9,
+            "tuteur": {
+                "nom": "Sarr Abdoulaye",
+                "lien": "P\u00e8re",
+                "adresse": "M\u00e9dina, Rue 12 x 13, Dakar",
+                "telephone": "778901234"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [],
+            "statut": "actif"
+        },
+        {
+            "id": 5,
+            "matricule": "256303",
+            "nom": "Faye",
+            "prenom": "Astou",
+            "naissance": {
+                "date": "2002-03-17",
+                "lieu": "Dakar"
+            },
+            "adresse": "Grand Yoff, Cit\u00e9 Aliou Sow, Dakar",
+            "email": "astou.faye@example.com",
+            "telephone": "779012345",
+            "photo": "astou.jpg",
+            "referentiel_id": 4,
+            "promotion_id": 9,
+            "tuteur": {
+                "nom": "Faye Marie",
+                "lien": "M\u00e8re",
+                "adresse": "Grand Yoff, Cit\u00e9 Aliou Sow, Dakar",
+                "telephone": "779012345"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [],
+            "statut": "inactif"
+        },
+        {
+            "id": 6,
+            "matricule": "256304",
+            "nom": "Camara",
+            "prenom": "Ibrahim",
+            "naissance": {
+                "date": "1999-05-21",
+                "lieu": "Ziguinchor"
+            },
+            "adresse": "Sacr\u00e9-C\u0153ur 3, Villa 9874, Dakar",
+            "email": "ibrahim.camara@example.com",
+            "telephone": "770123456",
+            "photo": "ibrahim.jpg",
+            "referentiel_id": 5,
+            "promotion_id": 9,
+            "tuteur": {
+                "nom": "Camara Lamine",
+                "lien": "Fr\u00e8re",
+                "adresse": "Sacr\u00e9-C\u0153ur 3, Villa 9874, Dakar",
+                "telephone": "770123456"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [],
+            "statut": "actif"
         }
     ]
 }

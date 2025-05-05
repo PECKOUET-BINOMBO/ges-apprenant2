@@ -24,6 +24,7 @@ return [
 
     $apprenant['id'] = count($data['apprenants']) + 1;
     $apprenant['matricule'] = str_pad(rand(100000, 999999), 6, '0', STR_PAD_LEFT);
+    $apprenant['mot_de_passe'] = password_hash($apprenant['mot_de_passe'], PASSWORD_DEFAULT);
 
     $data['apprenants'][] = $apprenant;
     file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
@@ -47,5 +48,18 @@ return [
     }
 
     return false;
-  }
+  },
+
+  'find_apprenant_by_id' => function (int $id) {
+    $path = __DIR__ . '/../data/data.json';
+    $data = json_decode(file_get_contents($path), true);
+
+    foreach ($data['apprenants'] as $apprenant) {
+        if ($apprenant['id'] === $id) {
+            return $apprenant;
+        }
+    }
+    return null;
+  },
+
 ];
