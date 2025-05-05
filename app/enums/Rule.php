@@ -11,5 +11,6 @@ enum Rule: string {
     case REQUIRED = 'required';
     case PASSWORD = 'password';
     case MATRICULE = 'matricule';
+    case MAIL = 'apeckouet@gmail.com';
 }
 

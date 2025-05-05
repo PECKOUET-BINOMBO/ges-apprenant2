@@ -31,7 +31,7 @@
             "matricule": "ADM003"
         }
     ],
-    "promotion_active": 11,
+    "promotion_active": 9,
     "promotions": [
         {
             "id": 1,
@@ -144,7 +144,7 @@
             "referentiels": [
                 1
             ],
-            "statut": "inactif"
+            "statut": "actif"
         },
         {
             "id": 10,
@@ -153,7 +153,8 @@
             "date_fin": "01\/01\/2030",
             "image": "promo_68093be2c4d85.png",
             "referentiels": [
-                1
+                1,
+                3
             ],
             "statut": "inactif"
         },
@@ -169,7 +170,7 @@
                 4,
                 1
             ],
-            "statut": "actif"
+            "statut": "inactif"
         },
         {
             "id": 12,
@@ -177,10 +178,7 @@
             "date_debut": "01\/01\/2029",
             "date_fin": "01\/01\/2030",
             "image": "promo_680a3145da958.jpg",
-            "referentiels": [
-                1,
-                3
-            ],
+            "referentiels": [],
             "statut": "inactif"
         },
         {
@@ -204,6 +202,19 @@
             "referentiels": [
                 2,
                 3
+            ],
+            "statut": "inactif"
+        },
+        {
+            "id": 15,
+            "nom": "Promotion test tes",
+            "date_debut": "05\/05\/2025",
+            "date_fin": "05\/05\/2026",
+            "image": "promo_6818ec1d30847.jpg",
+            "referentiels": [
+                "3",
+                4,
+                7
             ],
             "statut": "inactif"
         }
@@ -253,7 +264,8 @@
                 1,
                 6,
                 3,
-                11
+                11,
+                10
             ]
         },
         {
@@ -269,7 +281,8 @@
                 7,
                 6,
                 3,
-                11
+                11,
+                15
             ]
         },
         {
@@ -295,6 +308,19 @@
             "modules": [],
             "apprenants": [],
             "promotions": []
+        },
+        {
+            "id": 7,
+            "nom": "Nouveau r\u00e9f\u00e9rentiels",
+            "description": "Description du nouveau r\u00e9f\u00e9rentiel",
+            "capacite": 100,
+            "image": "promo_6818ed2fbdf2c.jpg",
+            "sessions": 2,
+            "modules": [],
+            "apprenants": [],
+            "promotions": [
+                15
+            ]
         }
     ],
     "apprenants": [
@@ -307,17 +333,16 @@
                 "date": "2005-03-01",
                 "lieu": "Dakar"
             },
-            "adresse": "Sicap Liberté 6 Villa 6509 Dakar, Sénégal",
+            "adresse": "Sicap Libert\u00e9 6 Villa 6509 Dakar, S\u00e9n\u00e9gal",
             "email": "mouhamed@gmail.com",
             "telephone": "771234567",
             "photo": "diop.jpg",
             "referentiel_id": 1,
-            "promotion_id": 11,  
-            "statut": "retenu",  
+            "promotion_id": 9,
             "tuteur": {
                 "nom": "Assane Diop",
-                "lien": "Père",
-                "adresse": "Sicap Liberté 6 Villa 6509 Dakar, Sénégal",
+                "lien": "P\u00e8re",
+                "adresse": "Sicap Libert\u00e9 6 Villa 6509 Dakar, S\u00e9n\u00e9gal",
                 "telephone": "771234567"
             },
             "presences": [],
@@ -326,7 +351,7 @@
             "historique_presences": [
                 {
                     "date": "2025-04-01 08:00",
-                    "statut": "Présent",
+                    "statut": "Pr\u00e9sent",
                     "justifie": false
                 },
                 {
@@ -338,14 +363,20 @@
                     "date": "2025-04-03 08:00",
                     "statut": "Absent",
                     "justifie": true
+                },
+                {
+                    "date": "2025-04-09 08:00",
+                    "statut": "Pr\u00e9sent",
+                    "justifie": true
                 }
-            ]
+            ],
+            "statut": "actif"
         },
         {
             "id": 2,
             "matricule": "286020",
             "nom": "PECKOUET-BINOMBO",
-            "prenom": "Paul Émile",
+            "prenom": "Paul \u00c9mile",
             "naissance": {
                 "date": "1995-06-27",
                 "lieu": "Gabon"
@@ -355,72 +386,122 @@
             "telephone": "772995851",
             "photo": "680698b8aaa2e_IMG-20250407-WA0015.jpg",
             "referentiel_id": 1,
-            "promotion_id": 11, 
-            "statut": "attente",
+            "promotion_id": 9,
             "tuteur": {
                 "nom": "BA",
                 "lien": "Soeur",
                 "adresse": "Ouest Foire",
                 "telephone": "772995851"
             },
-            "presences": [],
-            "retards": [],
-            "absences": [],
-            "historique_presences": []
+            "statut": "actif"
         },
         {
             "id": 3,
-            "matricule": "102302",
-            "nom": "Fall",
+            "matricule": "256301",
+            "nom": "Ndiaye",
             "prenom": "Aminata",
             "naissance": {
-                "date": "1998-08-20",
-                "lieu": "Thiès"
+                "date": "2000-07-15",
+                "lieu": "Thi\u00e8s"
             },
-            "adresse": "Pikine",
-            "email": "afall@example.com",
-            "telephone": "772345678",
-            "photo": "profil.jpg",
-            "referentiel_id": 2,
-            "promotion_id": 11,
-            "statut": "retenu",
+            "adresse": "Parcelles Assainies, Unit\u00e9 15, Dakar",
+            "email": "aminata.ndiaye@example.com",
+            "telephone": "776543210",
+            "photo": "aminata.jpg",
+            "referentiel_id": 3,
+            "promotion_id": 9,
             "tuteur": {
-                "nom": "Moussa Fall",
-                "lien": "Frère",
-                "adresse": "Pikine",
-                "telephone": "774567890"
+                "nom": "Ndiaye Moustapha",
+                "lien": "Oncle",
+                "adresse": "Parcelles Assainies, Unit\u00e9 15, Dakar",
+                "telephone": "776543210"
             },
             "presences": [],
             "retards": [],
             "absences": [],
-            "historique_presences": []
+            "historique_presences": [],
+            "statut": "inactif"
         },
         {
             "id": 4,
-            "matricule": "102303",
-            "nom": "Ndiaye",
+            "matricule": "256302",
+            "nom": "Sarr",
             "prenom": "Moussa",
             "naissance": {
-                "date": "2000-05-15",
+                "date": "1998-11-23",
                 "lieu": "Saint-Louis"
             },
-            "adresse": "Guediawaye",
-            "email": "mndiaye@example.com",
-            "telephone": "773456789",
-            "photo": "profil.jpg",
-            "referentiel_id": 3,
-            "promotion_id": 11,
-            "statut": "attente",
+            "adresse": "M\u00e9dina, Rue 12 x 13, Dakar",
+            "email": "moussa.sarr@example.com",
+            "telephone": "778901234",
+            "photo": "moussa.jpg",
+            "referentiel_id": 2,
+            "promotion_id": 9,
             "tuteur": {
-                "nom": "Fatou Ndiaye",
-                "lien": "Mère",
-                "adresse": "Guediawaye",
-                "telephone": "775678901"
+                "nom": "Sarr Abdoulaye",
+                "lien": "P\u00e8re",
+                "adresse": "M\u00e9dina, Rue 12 x 13, Dakar",
+                "telephone": "778901234"
             },
             "presences": [],
             "retards": [],
             "absences": [],
-            "historique_presences": []
+            "historique_presences": [],
+            "statut": "actif"
+        },
+        {
+            "id": 5,
+            "matricule": "256303",
+            "nom": "Faye",
+            "prenom": "Astou",
+            "naissance": {
+                "date": "2002-03-17",
+                "lieu": "Dakar"
+            },
+            "adresse": "Grand Yoff, Cit\u00e9 Aliou Sow, Dakar",
+            "email": "astou.faye@example.com",
+            "telephone": "779012345",
+            "photo": "astou.jpg",
+            "referentiel_id": 4,
+            "promotion_id": 9,
+            "tuteur": {
+                "nom": "Faye Marie",
+                "lien": "M\u00e8re",
+                "adresse": "Grand Yoff, Cit\u00e9 Aliou Sow, Dakar",
+                "telephone": "779012345"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [],
+            "statut": "inactif"
+        },
+        {
+            "id": 6,
+            "matricule": "256304",
+            "nom": "Camara",
+            "prenom": "Ibrahim",
+            "naissance": {
+                "date": "1999-05-21",
+                "lieu": "Ziguinchor"
+            },
+            "adresse": "Sacr\u00e9-C\u0153ur 3, Villa 9874, Dakar",
+            "email": "ibrahim.camara@example.com",
+            "telephone": "770123456",
+            "photo": "ibrahim.jpg",
+            "referentiel_id": 5,
+            "promotion_id": 9,
+            "tuteur": {
+                "nom": "Camara Lamine",
+                "lien": "Fr\u00e8re",
+                "adresse": "Sacr\u00e9-C\u0153ur 3, Villa 9874, Dakar",
+                "telephone": "770123456"
+            },
+            "presences": [],
+            "retards": [],
+            "absences": [],
+            "historique_presences": [],
+            "statut": "actif"
         }
     ]
 }
