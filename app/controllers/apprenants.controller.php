@@ -103,4 +103,3 @@ function show_apprenant_details(): void
 
 
 
-
