@@ -13,8 +13,6 @@ require_once __DIR__ . '/../controllers/dashboard.controller.php';
 use function App\Controllers\show_login;
 use function App\Controllers\handle_login;
 use function App\Controllers\error_404;
-use function App\Controllers\render_view;
-use function App\Controllers\redirect_to_route;
 use function App\Controllers\index_promotions;
 use function App\Controllers\store_promotion;
 use function App\Controllers\activer_promotion;
@@ -76,11 +74,11 @@ function load_router(): void
         case 'store_referentiel':
             store_referentiel();
             break;
-            
+
         case 'ajouter_referentiel_a_promotion':
             ajouter_referentiel_a_promotion();
             break;
-            
+
         case 'supprimer_referentiel_de_promotion':
             supprimer_referentiel_de_promotion();
             break;
@@ -89,14 +87,10 @@ function load_router(): void
             index_apprenants();
             break;
 
-        case 'store_apprenant':
-            store_apprenant();
-            break;
-
-        case 'apprenant_details':
+        case 'apprenant_details': // Route pour afficher les détails d'un apprenant
             show_apprenant_details();
             break;
-            
+
         case 'forgot':
             show_forgot();
             break;
